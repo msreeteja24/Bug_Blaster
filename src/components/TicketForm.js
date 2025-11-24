@@ -32,7 +32,7 @@ export default function TicketForm() {
           type="text"
           value={title}
           className="form-input"
-          onChange={(e) => e.target.setTitle}
+          onChange={(e) => setTitle(e.target.value)}
         ></input>
         <div>
           <label>Description</label>
@@ -40,12 +40,28 @@ export default function TicketForm() {
             type="text"
             value={description}
             className="form-input"
-            onChange={(e) => e.target.setDescription}
+            onChange={(e) => setDescription(e.target.value)}
           ></textarea>
         </div>
-        <fieldset>
+        <fieldset className="priority-fieldset">
           <legend> Priority </legend>
+          {Object.entries(priorityLabels).map(([value, label]) => (
+            <label key={value} className="priority-label">
+              <input
+                type="radio"
+                value={value}
+                checked={priortity === value}
+                className="priority-input"
+                onChange={(e) => setPriority(e.target.value)}
+              ></input>
+              {label}
+            </label>
+          ))}
         </fieldset>
+
+        <button type="submit" className="button" onChange={handleSubmit}>
+          Submit
+        </button>
       </div>
     </form>
   );
