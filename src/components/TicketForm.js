@@ -4,7 +4,7 @@ import "../styles.css";
 export default function TicketForm() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [priortity, setPriority] = useState("1");
+  const [priority, setPriority] = useState("1");
 
   const priorityLabels = {
     1: "Low",
@@ -20,6 +20,13 @@ export default function TicketForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault(); //This preventDefault is used to avoid the reloading of form when it is submitted.
+
+    const ticketData = {
+      id: new Date().toISOString(),
+      Title: title,
+      Description: description,
+      Priority: priority,
+    };
 
     clearForm();
   };
@@ -50,7 +57,7 @@ export default function TicketForm() {
               <input
                 type="radio"
                 value={value}
-                checked={priortity === value}
+                checked={priority === value}
                 className="priority-input"
                 onChange={(e) => setPriority(e.target.value)}
               ></input>
