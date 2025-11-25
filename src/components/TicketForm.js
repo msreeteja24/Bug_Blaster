@@ -49,6 +49,11 @@ export default function TicketForm({ dispatch, editingTicket }) {
     clearForm();
   };
 
+  const handleCancelEdit = (e) => {
+    dispatch({ type: "CLEAR_EDITING_TICKET" });
+    clearForm();
+  };
+
   return (
     <form onSubmit={handleSubmit} className="ticket-form">
       <div>
@@ -87,6 +92,16 @@ export default function TicketForm({ dispatch, editingTicket }) {
         <button type="submit" className="button" onClick={handleSubmit}>
           Submit
         </button>
+
+        {
+          //The below is read as if the state is editing ticket then
+        }
+        {editingTicket && (
+          <button className="button" onClick={handleCancelEdit}>
+            {" "}
+            Cancel Edit
+          </button>
+        )}
       </div>
     </form>
   );
