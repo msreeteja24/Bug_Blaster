@@ -9,10 +9,10 @@ export default function TicketItem({ ticket, dispatch }) {
   };
   return (
     <div className="ticket-item">
-      <div className={`priority-dot ${priorityClass[ticket.priority]}`}>
-        <h3>{title}</h3>
-        <p>{description}</p>
-      </div>
+      <div className={`priority-dot ${priorityClass[ticket.priority]}`}></div>
+
+      <h3>{title}</h3>
+      <p>{description}</p>
     </div>
   );
 }

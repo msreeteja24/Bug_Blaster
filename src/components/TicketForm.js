@@ -23,9 +23,9 @@ export default function TicketForm({ dispatch }) {
 
     const ticketData = {
       id: new Date().toISOString(),
-      Title: title,
-      Description: description,
-      Priority: priority,
+      title,
+      description,
+      priority,
     };
 
     dispatch({
@@ -71,7 +71,7 @@ export default function TicketForm({ dispatch }) {
           ))}
         </fieldset>
 
-        <button type="submit" className="button" onChange={handleSubmit}>
+        <button type="submit" className="button" onClick={handleSubmit}>
           Submit
         </button>
       </div>
