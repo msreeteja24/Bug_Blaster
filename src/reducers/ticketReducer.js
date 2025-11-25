@@ -1,7 +1,4 @@
 //Reducer contains two parameters - state and action
-
-import { act } from "react";
-
 //naming convention is - camelCasing
 export default function ticketReducer(state, action) {
   switch (action.type) {
@@ -48,6 +45,11 @@ export default function ticketReducer(state, action) {
           ),
         };
       }
+    case "SET_SORTING":
+      return {
+        ...state,
+        sortPreference: action.payload,
+      };
     default:
       return state;
   }
