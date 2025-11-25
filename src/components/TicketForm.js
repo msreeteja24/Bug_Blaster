@@ -1,10 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles.css";
 
-export default function TicketForm({ dispatch }) {
+export default function TicketForm({ dispatch, editingTicket }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("1");
+
+  //In order to load the initial values when we edit a ticket we will useEffect.
+  //The effect is called once it notices the editing ticket.(2nd parameter)
+  useEffect(() => {
+    if (editingTicket) {
+      //We will set the state to the data of the editing ticket when we are editing the ticket.
+      setTitle(editingTicket.title);
+      setDescription(editingTicket.description);
+      setPriority(editingTicket.priority);
+    } else {
+      clearForm();
+    }
+  }, [editingTicket]);
 
   const priorityLabels = {
     1: "Low",
@@ -22,14 +35,14 @@ export default function TicketForm({ dispatch }) {
     e.preventDefault(); //This preventDefault is used to avoid the reloading of form when it is submitted.
 
     const ticketData = {
-      id: new Date().toISOString(),
+      id: editingTicket ? editingTicket.id : new Date().toISOString(),
       title,
       description,
       priority,
     };
 
     dispatch({
-      type: "ADD_TICKET",
+      type: editingTicket ? "UPDATE_TICKET" : "ADD_TICKET",
       payload: ticketData,
     });
 

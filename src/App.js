@@ -6,14 +6,20 @@ import ticketReducer from "./reducers/ticketReducer";
 import TicketList from "./components/TicketList";
 
 function App() {
-  const initialstate = { tickets: [] };
+  //Since we need to access the editing ticket state,
+  // we are adding that in the initial state to access it and
+  // initially we will set it to null
+  const initialstate = { tickets: [], editingTicket: null };
   const [state, dispatch] = useReducer(ticketReducer, initialstate);
 
   return (
     <div className="App">
       <div className="container">
         <h1>Bug Blaster</h1>
-        <TicketForm dispatch={dispatch}></TicketForm>
+        <TicketForm
+          dispatch={dispatch}
+          editingTicket={state.editingTicket}
+        ></TicketForm>
 
         {
           //Here && is no and - it is "then".

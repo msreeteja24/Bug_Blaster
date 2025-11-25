@@ -21,7 +21,18 @@ export default function TicketItem({ ticket, dispatch }) {
         Delete
       </button>
 
-      <button className="button">Edit</button>
+      {
+        //Here we should not set the type to update ticket, we have to set the type to set editing ticket
+        //Because when we click the button, we want to set the edit mode and the pass the information which ticket is in edit mode.
+      }
+      <button
+        className="button"
+        onClick={() =>
+          dispatch({ type: "SET_EDITING_TICKET", payload: ticket })
+        }
+      >
+        Edit
+      </button>
     </div>
   );
 }
